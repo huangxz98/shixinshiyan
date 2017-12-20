@@ -22,13 +22,47 @@
 </image>
 
 定义stimulus
-<text story>求改字体格式
+<text storytext>求改字体格式
 / items = storytxt
 / fontstyle = ("Fixedsys", 10%, false, false, false, false, 5, 1)
 / txcolor = (255, 255, 255)
 / txbgcolor = (0, 0, 0)
 </text>
 
-<text instruction>
-/ items = ("")
+<text instruction>求改指导语和字体格式
+/ items = ("这里要改指导语,摁键fj")
+/ fontstyle = ("Fixedsys", 10%, false, false, false, false, 5, 1)
+/ txcolor = (255, 255, 255)
+/ txbgcolor = (0, 0, 0)
 </text>
+
+定义trail 
+<trial introduction>
+/ validresponse = (anyresponse)
+/ stimulustimes = [1 = instruction]
+/ recorddata = false
+</trial>
+
+<trial storytrial>要怎么设置随机呢
+/pretrialpause = 500
+/validresponse =  ("F","J")
+
+</trial>
+
+
+定义block
+<block introductionblk>
+/ screencolor = (0, 0, 0)
+/ trials = [1 = introduction]
+</block>
+
+<block storyblk>
+/ screencolor = (0, 0, 0)
+/ blockfeedback = (meanlatency,correct)
+/ trials = [1-8 = noreplace(storytrial)]
+</block>
+
+定义experiment
+<expt moralstory>
+/ blocks = [1 = introductionblk; 2 = storyblk]
+</expt>
