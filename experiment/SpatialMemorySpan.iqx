@@ -1,0 +1,704 @@
+﻿**************************************************************************************************************
+**************************************************************************************************************
+	Corsi Block-Tapping Task
+**************************************************************************************************************
+**************************************************************************************************************
+	Kessels, R.P.C., van Zandvoort, M.J.E., Postma, A., Kappelle, L.J., & de Haan, E.H.F. (2000).
+	The Corsi block-tapping task: Standardization and normative data. Applied Neuropsychology,
+	7(4), 252-258.
+
+	Corsi, P. M. (1972). Human memory and the medial temporal region of the brain. 
+	Dissertation Abstracts International, 34, 819B.
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Script Version:	1.0 (Final)
+	Last Modified:	04-14-2015 by K. Borchert for Millisecond Software LLC
+
+	Copyright © 04-14-2015 Millisecond Software
+**************************************************************************************************************
+**************************************************************************************************************
+
+	Meticulously handcrafted from the finest code by:
+	David Nitz (nitz.david@gmail.com)
+	for Millisecond Software, LLC.
+
+	This script requires Inquisit 4.0.0.0 or greater.
+	Copyright (c) 2012 by Millisecond Software, LLC.
+	http://www.millisecond.com/
+
+**************************************************************************************************************
+**************************************************************************************************************
+	CAUTIONARY NOTE: 
+**************************************************************************************************************
+**************************************************************************************************************
+	
+	The Corsi Block task specifies a canvas size (1024px X 768px) under section 'Defaults'.
+	All stimuli are positioned relative to this specified canvas. The canvas was specified to
+	to ensure as much as possible with relative sizing that the size of the Corsi blocks is similar across monitors 
+	(with a target box size ~3cm). Nevertheless adjustments may have to be made to block sizes.
+
+	Changing the size of the blocks (while keeping the relative spacing between blocks the same) can be achieved 
+	by adjusting the /canvassize under section 'Defaults'. The size of the blocks can further be adjusted
+	via the configurable parameter values.blocksize; however, while the sizes of the blocks will get
+	smaller/bigger so will the relative distances between the boxes if the canvassize stays the same.
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Default Settings
+**************************************************************************************************************
+**************************************************************************************************************
+<defaults>
+/ minimumversion = "4.0.0.0"
+/ inputdevice = mousekey
+/ screencolor = (black)
+/ fontstyle = ("Arial", 4.00%, true)
+/ txcolor = (black)
+/ txbgcolor = (silver)
+/canvasaspectratio = (4,3)
+/canvassize = (1024px, 768px)
+</defaults>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Configurable Task Parameters
+**************************************************************************************************************
+**************************************************************************************************************
+	blockcolor				Display color for blocks in unhighlighted state.
+	tapcolor				Display color for currently highlighted ('tapped') blocks.
+	boardcolor				Display color for the virtual game board.
+	blocksize				Size of blocks in % of canvassize.
+	showfeedback			'true' -> show performance feedback after each completed sequence.
+							'false' -> don't show performance feedback after each completed sequence.
+							Default is 'true'.
+	showscores				'true' -> show score summary at the end of the procedure.
+							'false' -> don't show score summary at the end of the procedure.
+							Default is 'true'.
+	tapinterval				Interval between 'taps' in ms. Default is '1000'.
+	posttapinterval			Time between erasing a previously highlighted block and highlighting the 
+							next one in ms.
+	feedbackduration		Duration of performance feedback after recalling a sequence.
+
+**************************************************************************************************************
+**************************************************************************************************************
+
+<values userparams>
+/ blockcolor = blue
+/ tapcolor = yellow
+/ boardcolor = black
+/ blocksize = 17.5%
+/ showfeedback = true
+/ showscores = true
+/ tapinterval = 1000
+/ posttapinterval = 250
+/ feedbackduration = 1000
+</values>
+
+
+**************************************************************************************************************
+**************************************************************************************************************
+	The remaining entries are updated at runtime / used for data recording and should *not* be 
+	changed, unless you really know what you are doing. Entries of interest are explained below.
+**************************************************************************************************************
+**************************************************************************************************************
+	
+	completed:				0 = script was not completed; 1 = script was completed (all conditions run)
+
+	seqnumber				The ordinal number of the current block sequence. A maximum of 16 
+							sequences are given in ascending order.
+	seqlength				Length of the current block sequence.
+	seqstring				The current sequence.
+	respstring				The sequence entered by the participant.
+	correct					'1' if the current sequence was recalled correctly. '0' if the participant
+							made a mistake.
+	ncorrectinblock			Holds the number of correctly recalled sequences in the current block.
+							Sequences are given in blocks of two. The task stops as soon as the 
+							participant fails to recall two sequences of equal length.
+	ncorrecttotal			Total number of correctly recalled sequences across the whole task.
+	skipblock				Remaining blocks are skipped if 'values.ncorrectinblock' is zero.
+	blockspan				The achieved Block Span. Equals the length of the last correctly recalled
+							sequence.
+	totalscore				Summary score proposed by Kessels et al. (2000). Computed as 
+							'values.blockspan' * 'values.ncorrecttotal'.
+**************************************************************************************************************
+**************************************************************************************************************
+
+<values taskparams>
+/ completed = 0
+/ seqnumber = 0
+/ seqlength = 0
+/ seqstring = ""
+/ respstring = ""
+/ correct = 0
+/ ncorrecttotal = 0
+/ ncorrectinblock = 0
+/ skipblock = 0
+/ highlightedblock = 0
+/ tapcount = 0
+/ blockspan = 0
+/ totalscore = 0
+</values>
+
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Custom Data Output
+**************************************************************************************************************
+**************************************************************************************************************
+
+***********************
+raw data
+***********************
+date, time, subject:				date and time script was run with the current subject
+blockcode, blocknum:				the name and number of the current block
+trialcode, trialnum: 				the name and number of the currently recorded trial
+										(Note: not all trials that are run might record data) 
+seqnumber							The ordinal number of the current block sequence. A maximum of 16 sequences are given in ascending order.
+seqlength							Length of the current block sequence.
+seqstring							The current sequence
+seqstring_backwards					The current sequence (stored backwards).
+respstring							The sequence entered by the participant.
+response							the response of the participant in a given trial
+latency								the latency of the response
+correct								'1' if the current sequence was recalled correctly. '0' if the participant
+									made a mistake.
+ncorrectinblock						Holds the number of correctly recalled sequences in the current block.
+									Sequences are given in blocks of two. The task stops as soon as the 
+									participant fails to recall two sequences of equal length.
+ncorrecttotal						Total number of correctly recalled sequences across the whole task.
+blockspan							The achieved Block Span. Equals the length of the last correctly recalled
+									sequence.
+totalscore							Summary score proposed by Kessels et al. (2000). Computed as 
+									'values.blockspan' * 'values.ncorrecttotal'.
+
+<data Corsi>
+/ file = "Corsi_raw.iqdat"
+/ columns = [date,time,subject,blocknum,blockcode,trialnum,trialcode,values.seqnumber,
+	values.seqlength,values.seqstring,values.respstring,response,latency,values.correct,
+	values.ncorrectinblock,values.ncorrecttotal,values.blockspan,values.totalscore]
+/ separatefiles = true
+</data>
+
+
+********************
+summary data
+********************
+
+script.startdate:							date script was run
+script.starttime:							time script was started
+script.subjectid:							subject id number
+script.elapsedtime:							time it took to run script (in ms)
+/completed:									0 = script was not completed; 1 = script was completed (all conditions run)
+
+ncorrecttotal								Total number of correctly recalled sequences across the whole task.
+blockspan									The achieved Block Span. Equals the length of the last correctly recalled sequence.
+totalscore									Summary score proposed by Kessels et al. (2000). Computed as 'values.blockspan' * 'values.ncorrecttotal'.
+
+<summarydata Corsi>
+/ file = "Corsi_summary.iqdat"
+/ columns = [script.startdate, script.starttime, script.subjectid, script.elapsedtime, values.completed,
+	values.ncorrecttotal, values.blockspan, values.totalscore]
+/ separatefiles = true
+</summarydata>
+
+
+**************************************************************************************************************
+**************************************************************************************************************
+	List Elements
+**************************************************************************************************************
+**************************************************************************************************************
+	Sequence Number (Ordinal)
+**************************************************************************************************************
+**************************************************************************************************************
+<list seqnumber>
+/ items = (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+/ selectionmode = list.seqlength.currentindex
+</list>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Sequence Length
+**************************************************************************************************************
+**************************************************************************************************************
+<list seqlength>
+/ items = (2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9)
+/ selectionmode = sequence
+/ resetinterval = 0
+</list>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Tapping Sequences 
+	(one per line)
+**************************************************************************************************************
+**************************************************************************************************************
+<list blockseq>
+/ items = 
+	(8,5,
+	6,4,
+	4,7,2,
+	8,1,5,
+	3,4,1,7,
+	6,1,5,8,
+	5,2,1,8,6,
+	4,2,7,3,1,
+	3,9,2,4,8,7,
+	3,7,8,2,9,4,
+	5,9,1,7,4,2,8,
+	5,7,9,2,8,4,6,
+	5,8,1,9,2,6,4,7,
+	5,9,3,6,7,2,4,3,
+	5,3,8,7,1,2,4,6,9,
+	4,2,6,8,1,7,9,3,5)
+/ selectionmode = sequence
+/ resetinterval = 0
+</list>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Stimulus Elements
+**************************************************************************************************************
+**************************************************************************************************************
+	Square Stims ("Blocks")
+**************************************************************************************************************
+**************************************************************************************************************
+<text 1>
+/ items = (" ")
+/ size = (values.blocksize * 0.75, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 43%
+/ vposition = 85%
+/txbgcolor = red
+/txcolor = red
+</text>
+
+<text 2>
+/ items = (" ")
+/ size = (values.blocksize * 0.75, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 86.3%
+/ vposition = 80%
+</text>
+
+<text 3>
+/ items = (" ")
+/ size = (values.blocksize * 0.75, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 22%
+/ vposition = 65%
+</text>
+
+<text 4>
+/ items = (" ")
+/ size = (values.blocksize * 0.75, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 70%
+/ vposition = 60%
+</text>
+
+<text 5>
+/ items = (" ")
+/ size = (values.blocksize * 0.75, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 40%
+/ vposition = 48%
+</text>
+
+<text 6>
+/ items = (" ")
+/ size = (values.blocksize * 0.75, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 15%
+/ vposition = 30%
+</text>
+
+<text 7>
+/ items = (" ")
+/ size = (values.blocksize * 0.75, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 92%
+/ vposition = 30%
+</text>
+
+<text 8>
+/ items = (" ")
+/ size = (values.blocksize * 0.75, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 65%
+/ vposition = 10%
+</text>
+
+<text 9>
+/ items = (" ")
+/ size = (values.blocksize * 0.75, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 40%
+/ vposition = 15%
+</text>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Background Shape ("Board")
+**************************************************************************************************************
+**************************************************************************************************************
+<shape board>
+/ shape = rectangle
+/ color = (black)
+/ erase = false
+/ position = (50%, 50%)
+/ size = (100%, 100%)
+</shape>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Startup Messages & UI Elements
+**************************************************************************************************************
+**************************************************************************************************************
+<text getready>
+/ items = ("Get ready!")
+/ erase = false
+/ txcolor = (white)
+/ txbgcolor = (black)
+/ size = (100%,100%)
+/ halign = center
+/ valign = center
+/ hjustify = center
+/ vjustify = center
+</text>
+
+<text reset>
+/ items = ("Reset")
+/ position = (35%,99.5%)
+/ size = (20%,4%)
+/ erase = false
+/ fontstyle = ("Arial", 3.00%, true)
+/ txbgcolor = (white)
+/ vjustify = center
+/ halign = center
+/ valign = bottom
+</text>
+
+<text done>
+/ items = ("Done")
+/ position = (65%,99.5%)
+/ size = (20%,4%)
+/ fontstyle = ("Arial", 3.00%, true)
+/ erase = false
+/ txbgcolor = (white)
+/ vjustify = center
+/ halign = center
+/ valign = bottom
+</text>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Feedback & Scoring Stims
+**************************************************************************************************************
+**************************************************************************************************************
+<text feedbackmsg>
+/ items = ("Wrong!", "Correct!")
+/ select = values.correct+1
+/ erase = false
+/ size = (100%,100%)
+/ txcolor = (white)
+/ txbgcolor = (black)
+/ halign = center
+/ valign = center
+/ hjustify = center
+/ vjustify = center
+</text>
+
+<text scores>
+/ items = ("Results:
+Block Span = <%values.blockspan%> 
+Total Score = <%values.totalscore%>")
+/ size = (50%, 50%)
+/ erase = false
+/ txcolor = (white)
+/ txbgcolor = (black)
+/ halign = center
+/ valign = center
+/ hjustify = center
+/ vjustify = center
+</text>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Calibration Stims & Messages
+**************************************************************************************************************
+**************************************************************************************************************
+<text calibrationmsg>
+/ items = ("Please measure the length of the line and enter the result in millimeters!")
+/ txcolor = (white)
+/ txbgcolor = (black)
+/ size = (90%,10%)
+/ position = (50%, 35%)
+/ halign = center
+</text>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Debug Stuff
+**************************************************************************************************************
+**************************************************************************************************************
+<text debug>
+/ items = ("Given Sequence=<%values.seqstring%> | Recalled Sequence=<%values.respstring%>
+Blockspan=<%values.blockspan%> | Total Score=<%values.totalscore%>")
+/ erase = false
+/ size = (50%,4%)
+/ position = (50%, 0%)
+/ vjustify = center
+/ valign = top
+/ halign = center
+/ txbgcolor = (white)
+/ fontstyle = ("Arial", 1.50%, true)
+</text>
+
+<trial debug>
+/ stimulustimes = [0=board, 1,2,3,4,5,6,7,8,9, reset, done]
+/ ontrialbegin = [values.seqlength=list.seqlength.nextvalue; 
+	values.seqnumber=list.seqnumber.nextvalue; values.tapcount=0; values.correct=0;
+	values.seqstring=""; values.respstring=""]
+/ ontrialend = [text.1.textbgcolor=red; text.2.textbgcolor=values.blockcolor; 
+	text.3.textbgcolor=values.blockcolor; text.4.textbgcolor=values.blockcolor; 
+	text.5.textbgcolor=values.blockcolor; text.6.textbgcolor=values.blockcolor;
+	text.7.textbgcolor=values.blockcolor; text.8.textbgcolor=values.blockcolor; 
+	text.9.textbgcolor=values.blockcolor]
+/ branch = [trial.showseq]
+/validresponse = (1)
+/ recorddata = false
+</trial>
+
+<block debug>
+/trials = [1=debug]
+</block>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Trial Elements
+**************************************************************************************************************
+**************************************************************************************************************
+	Get Sequence
+**************************************************************************************************************
+**************************************************************************************************************
+<trial getseq>
+/ stimulustimes = [0=board,getready; 1000=board,1,2,3,4,5,6,7,8,9]
+/ ontrialbegin = [values.seqlength=list.seqlength.nextvalue; 
+	values.seqnumber=list.seqnumber.nextvalue; values.tapcount=0; values.correct=0;
+	values.seqstring=""; values.respstring=""]
+/ ontrialend = [text.1.textbgcolor=values.blockcolor; text.2.textbgcolor=values.blockcolor; 
+	text.3.textbgcolor=values.blockcolor; text.4.textbgcolor=values.blockcolor; 
+	text.5.textbgcolor=values.blockcolor; text.6.textbgcolor=values.blockcolor;
+	text.7.textbgcolor=values.blockcolor; text.8.textbgcolor=values.blockcolor; 
+	text.9.textbgcolor=values.blockcolor]
+/ branch = [trial.showseq]
+/ validresponse = (noresponse)
+/ trialduration = 2000
+/ recorddata = false
+</trial>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Show Sequence
+**************************************************************************************************************
+**************************************************************************************************************
+<trial showseq>
+/ ontrialbegin = [values.highlightedblock=list.blockseq.nextvalue;
+	values.tapcount+=1]
+/ ontrialbegin = [if(values.highlightedblock==1)text.1.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==2)text.2.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==3)text.3.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==4)text.4.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==5)text.5.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==6)text.6.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==7)text.7.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==8)text.8.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==9)text.9.textbgcolor=values.tapcolor]
+/ ontrialend = [text.1.textbgcolor=values.blockcolor]
+/ ontrialend = [text.2.textbgcolor=values.blockcolor]
+/ ontrialend = [text.3.textbgcolor=values.blockcolor]
+/ ontrialend = [text.4.textbgcolor=values.blockcolor]
+/ ontrialend = [text.5.textbgcolor=values.blockcolor]
+/ ontrialend = [text.6.textbgcolor=values.blockcolor]
+/ ontrialend = [text.7.textbgcolor=values.blockcolor]
+/ ontrialend = [text.8.textbgcolor=values.blockcolor]
+/ ontrialend = [text.9.textbgcolor=values.blockcolor]
+/ ontrialend = [values.seqstring=concat(values.seqstring,values.highlightedblock)]
+/ stimulusframes = [1=board,1,2,3,4,5,6,7,8,9]
+/ validresponse = (noresponse)
+/ trialduration = values.tapinterval
+/ posttrialpause = values.posttapinterval
+/ branch = [if(values.tapcount<values.seqlength)trial.showseq else trial.recallseq]
+/ recorddata = false
+</trial>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Recall Sequence
+**************************************************************************************************************
+**************************************************************************************************************
+<trial recallseq>
+/ inputdevice = mouse
+/ stimulusframes = [1=board,1,2,3,4,5,6,7,8,9,reset,done]
+/ validresponse = (1,2,3,4,5,6,7,8,9,reset,done)
+/ ontrialend = [if(trial.recallseq.response=="1")
+	text.1.textbgcolor=values.tapcolor else text.1.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="2")
+	text.2.textbgcolor=values.tapcolor else text.2.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="3")
+	text.3.textbgcolor=values.tapcolor else text.3.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="4")
+	text.4.textbgcolor=values.tapcolor else text.4.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="5")
+	text.5.textbgcolor=values.tapcolor else text.5.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="6")
+	text.6.textbgcolor=values.tapcolor else text.6.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="7")
+	text.7.textbgcolor=values.tapcolor else text.7.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="8")
+	text.8.textbgcolor=values.tapcolor else text.8.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="9")
+	text.9.textbgcolor=values.tapcolor else text.9.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="reset"){values.respstring="";
+	text.1.textbgcolor=values.blockcolor; text.2.textbgcolor=values.blockcolor; 
+	text.3.textbgcolor=values.blockcolor; text.4.textbgcolor=values.blockcolor; 
+	text.5.textbgcolor=values.blockcolor; text.6.textbgcolor=values.blockcolor;
+	text.7.textbgcolor=values.blockcolor; text.8.textbgcolor=values.blockcolor;
+	text.9.textbgcolor=values.blockcolor}]
+/ ontrialend = [if(trial.recallseq.response!="reset" && trial.recallseq.response!="done")
+	values.respstring=concat(values.respstring,trial.recallseq.response)]
+/ ontrialend = [if(trial.recallseq.response=="done" && values.respstring==values.seqstring){
+	values.correct=1; values.ncorrecttotal+=1; 
+	values.ncorrectinblock+=1;
+	values.blockspan=values.seqlength}]
+/ ontrialend = [if(trial.recallseq.response=="done")values.totalscore=values.blockspan*values.ncorrecttotal]
+/ branch = [if(trial.recallseq.response!="done")trial.recallseq else trial.showfeedback]
+</trial>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Show Feedback
+**************************************************************************************************************
+**************************************************************************************************************
+<trial showfeedback>
+/ skip = [values.showfeedback==false]
+/ stimulusframes = [1=board, feedbackmsg]
+/ validresponse = (noresponse)
+/ trialduration = values.feedbackduration
+/ recorddata = false
+</trial>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Show Scores
+**************************************************************************************************************
+**************************************************************************************************************
+<trial showscores>
+/ stimulusframes = [1=scores]
+/ validresponse = (lbuttondown)
+/ recorddata = false
+</trial>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Block Elements
+**************************************************************************************************************
+**************************************************************************************************************
+
+<block instructionsblock>
+/ preinstructions = (corsiinstructions)
+/ recorddata = false
+</block>
+
+<block corsiblock>
+/ onblockbegin = [values.ncorrectinblock=0]
+/ onblockend = [if(values.ncorrectinblock<=0)values.skipblock=1]
+/ skip = [values.skipblock==1]
+/ trials = [1=getseq; 2=getseq]
+</block>
+
+<block scoreblock>
+/ skip = [values.showscores==false]
+/ trials = [1=showscores]
+</block>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Experiment Elements
+**************************************************************************************************************
+**************************************************************************************************************
+<expt corsitask>
+/ onexptbegin = [text.1.erasecolor=values.blockcolor; text.2.erasecolor=values.blockcolor; 
+	text.3.erasecolor=values.blockcolor; text.4.erasecolor=values.blockcolor; 
+	text.5.erasecolor=values.blockcolor; text.6.erasecolor=values.blockcolor; 
+	text.7.erasecolor=values.blockcolor; text.8.erasecolor=values.blockcolor; 
+	text.9.erasecolor=values.blockcolor]
+/ onexptbegin = [text.1.textbgcolor=values.blockcolor; text.2.textbgcolor=values.blockcolor; 
+	text.3.textbgcolor=values.blockcolor; text.4.textbgcolor=values.blockcolor; 
+	text.5.textbgcolor=values.blockcolor; text.6.textbgcolor=values.blockcolor; 
+	text.7.textbgcolor=values.blockcolor; text.8.textbgcolor=values.blockcolor; 
+	text.9.textbgcolor=values.blockcolor]
+/ onexptbegin = [shape.board.color=values.boardcolor]
+/ blocks = [1=instructionsblock; 2-9=corsiblock; 10=scoreblock]
+/ onexptend = [values.completed = 1]
+</expt>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Instruction Pages
+**************************************************************************************************************
+**************************************************************************************************************
+<instruct>
+/ windowsize = (90%,90%)
+/ fontstyle = ("Arial", 2.50%, true)
+/ inputdevice = mouse
+/ nextlabel = "Click here to continue"
+/ prevlabel = "Click here to go back"
+/ lastlabel = "Click here to continue"
+</instruct>
+
+**************************************************************************************************************
+**************************************************************************************************************
+	Corsi Task Instructions
+**************************************************************************************************************
+**************************************************************************************************************
+<page corsiinstructions>
+^Welcome to the Corsi Block-Tapping Task!
+^^You are about to take part in a test that measures your ability to remember a sequence 
+of locations on the screen.
+^^You will see nine blocks on the screen. On each trial, several bocks will light up one at a time.
+Your job is to remember their exact sequence.
+^^As soon as the sequence is finished, you must repeat the sequence by clicking on the blocks
+IN THE SAME ORDER THEY WERE PRESENTED.
+^^When you are done, click the button labeled DONE. If you made a mistake, click the button
+labeled RESET to start over.
+^^We will begin with a sequence of two blocks. You will get two tries for each sequence length. 
+The number of blocks will increase by one whenever you get at least one of the 
+two sequences of equal length correct. There will be no practice.
+^^Click the "Continue" button when you are ready to begin.
+</page>
+
+
+**************************************************************************************************************
+**************************************************************************************************************
+	End Of File
+**************************************************************************************************************
+**************************************************************************************************************
