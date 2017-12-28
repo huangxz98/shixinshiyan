@@ -1,0 +1,160 @@
+实验设计：道德判断小故事，每个故事可以以文字、语音、图片的形式呈现，
+
+
+定义指导语
+<instruct instruction>
+
+	/nextkey = (" ")
+
+	/fontstyle = ("楷体", 3.14%, false, false, false, false, 5, 1)
+
+	/txcolor = (0,0,0)
+
+	/screencolor = (255,255,255)
+
+	/lastlabel = "请按空格键继续"
+
+	/windowsize = (2000,1600)
+
+</instruct>
+
+
+呈现指导语
+<page instruction>
+
+欢迎您参加我们的实验！^^^【任务】 下面您将阅读8个道德两难故事，针对每个故事将会向您提出一个以“是”或“否”为答案的道德判断问题。^^随后，请您对做出“是”或“否”判断的困难程度做出5点评分。^^（1-非常容易，2-比较容易，3-一般，4-比较困难，5-非常困难）^^^^^^【说明】 对于道德判断问题，请按“F”键代表回答“是”，或按“J”键代表回答“否”。^^对于做出判断的难易程度评分，请按数字1-5进行评分。
+
+</page>
+
+<page endinstruction>
+
+实验结束。^^感谢您参与我们的实验，祝您身体健康，学业进步！^^ 
+
+</page>
+
+定义item
+
+故事内容，可以加一些换行？
+
+<item storypic>
+
+/1 = "1.jpg"
+
+/2 = "2.jpg"
+
+/3 = "3.jpg"
+
+/4 = "4.jpg"
+
+/5 = "5.jpg"
+
+/6 = "6.jpg"
+
+/7 = "7.jpg"
+
+/8 = "8.jpg"
+
+</item>
+
+
+<item markpic>
+
+/1 = "mark.jpg"
+
+</item>
+
+
+
+定义stimulus
+
+
+<picture story>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = storypic
+
+/size = (2000,1600)
+
+</picture>
+
+
+<picture mark>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = markpic
+
+/size = (2000,1600)
+
+</picture>
+
+
+<shape blank>
+
+/erase = True(255,255,255)
+
+/color = (black)
+
+/size = (2000,1600)
+
+/shape = rectangle
+
+</shape>
+
+
+
+定义trail 
+
+要怎么设置随机呢
+
+<trial marktrial>
+
+/pretrialpause = 0
+
+/validresponse = ("1","2","3","4","5")
+
+/stimulustimes = [1 = mark]
+
+</trial>
+
+
+<trial storytrial>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = story]
+
+</trial>
+
+
+
+定义block
+
+<block storyblk>
+
+/ screencolor = (0, 0, 0)
+
+/ trials = [1,3,5,7,9,11,13,15 = storytrial;2,4,6,8,10,12,14,16 = marktrial]
+
+</block>
+
+
+
+定义experiment
+
+<expt moralstory>
+
+/preinstructions = (instruction)
+
+/postinstructions = (endinstruction)
+
+/ blocks = [1 = storyblk]
+
+</expt>
