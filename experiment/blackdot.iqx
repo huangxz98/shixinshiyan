@@ -1,0 +1,257 @@
+﻿定义黑点
+<values taskparams>
+/ completed = 0
+/ seqstring = ""
+/ respstring = ""
+/ correct = 0
+/ ncorrecttotal = 0
+/ ncorrectinblock = 0
+/ skipblock = 0
+/ highlightedblock = 0
+/ tapcount = 0
+/ totalscore = 0
+/ seqlength = 9
+</values>
+<values userparams>
+/ blockcolor = white
+/ tapcolor = red
+/ boardcolor = white
+/ blocksize = 17.5%
+/ showfeedback = true
+/ showscores = true
+/ tapinterval = 1000
+/ posttapinterval = 250
+/ feedbackduration = 1000
+</values>
+黑点本身
+<text 1>
+/ items = ("·")
+/ size = (values.blocksize, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 33/2%
+/ vposition = 33/2%
+/txbgcolor = black
+/txcolor = black
+</text>
+<text 2>
+/ items = ("·")
+/ size = (values.blocksize, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 33/2%
+/ vposition = 99/2%
+/txbgcolor = black
+/txcolor = black
+</text>
+<text 3>
+/ items = ("·")
+/ size = (values.blocksize, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 33/2%
+/ vposition = 99%
+/txbgcolor = black
+/txcolor = black
+</text>
+<text 4>
+/ items = ("·")
+/ size = (values.blocksize, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 66%
+/ vposition = 33%
+/txbgcolor = black
+/txcolor = black
+</text>
+<text 5>
+/ items = ("·")
+/ size = (values.blocksize, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 66%
+/ vposition = 66%
+/txbgcolor = black
+/txcolor = black
+</text>
+<text 6>
+/ items = ("·")
+/ size = (values.blocksize, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 66%
+/ vposition = 99%
+/txbgcolor = black
+/txcolor = black
+</text>
+<text 7>
+/ items = ("·")
+/ size = (values.blocksize, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 99%
+/ vposition = 33%
+/txbgcolor = black
+/txcolor = black
+</text>
+<text 8>
+/ items = ("·")
+/ size = (values.blocksize, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 99%
+/ vposition = 66%
+/txbgcolor = black
+/txcolor = black
+</text>
+<text 9>
+/ items = ("·")
+/ size = (values.blocksize, values.blocksize)
+/ hjustify = center
+/ vjustify = center
+/ erase = true(transparent)
+/ hposition = 99%
+/ vposition = 99%
+/txbgcolor = black
+/txcolor = black
+</text>
+
+还有7个
+定义重置和确定按钮
+<text reset>
+/ items = ("Reset")
+/ position = (35%,99.5%)
+/ size = (20%,4%)
+/ erase = false
+/ fontstyle = ("Arial", 3.00%, true)
+/ txbgcolor = (white)
+/ vjustify = center
+/ halign = center
+/ valign = bottom
+</text>
+
+<text done>
+/ items = ("Done")
+/ position = (65%,99.5%)
+/ size = (20%,4%)
+/ fontstyle = ("Arial", 3.00%, true)
+/ erase = false
+/ txbgcolor = (white)
+/ vjustify = center
+/ halign = center
+/ valign = bottom
+</text>
+
+<text feedbackmsg>
+/ items = ("Wrong!", "Correct!")
+/ select = values.correct+1
+/ erase = false
+/ size = (100%,100%)
+/ txcolor = (white)
+/ txbgcolor = (black)
+/ halign = center
+/ valign = center
+/ hjustify = center
+/ vjustify = center
+</text>
+定义背景
+<shape board>
+/ shape = rectangle
+/ color = (white)
+/ erase = false
+/ position = (50%, 50%)
+/ size = (100%, 100%)
+</shape>
+
+定义黑点出现
+<trial showseq>
+
+/ ontrialbegin = [if(values.highlightedblock==1)text.1.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==2)text.2.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==3)text.3.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==4)text.4.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==5)text.5.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==6)text.6.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==7)text.7.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==8)text.8.textbgcolor=values.tapcolor]
+/ ontrialbegin = [if(values.highlightedblock==9)text.9.textbgcolor=values.tapcolor]
+/ ontrialend = [text.1.textbgcolor=values.blockcolor]
+/ ontrialend = [text.2.textbgcolor=values.blockcolor]
+/ ontrialend = [text.3.textbgcolor=values.blockcolor]
+/ ontrialend = [text.4.textbgcolor=values.blockcolor]
+/ ontrialend = [text.5.textbgcolor=values.blockcolor]
+/ ontrialend = [text.6.textbgcolor=values.blockcolor]
+/ ontrialend = [text.7.textbgcolor=values.blockcolor]
+/ ontrialend = [text.8.textbgcolor=values.blockcolor]
+/ ontrialend = [text.9.textbgcolor=values.blockcolor]
+/ stimulusframes = [1=board,1,2,3,4,5,6,7,8,9]
+/ validresponse = (noresponse)
+/ trialduration = values.tapinterval
+/ posttrialpause = values.posttapinterval
+/ branch = [if(values.tapcount<values.seqlength)trial.showseq else trial.recallseq]
+/ recorddata = false
+</trial>
+定义回忆黑点
+
+<trial recallseq>
+/ inputdevice = mouse
+/ stimulusframes = [1=board,1,2,3,4,5,6,7,8,9,reset,done]
+/ validresponse = (1,2,3,4,5,6,7,8,9,reset,done)
+/ ontrialend = [if(trial.recallseq.response=="1")
+	text.1.textbgcolor=values.tapcolor else text.1.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="2")
+	text.2.textbgcolor=values.tapcolor else text.2.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="3")
+	text.3.textbgcolor=values.tapcolor else text.3.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="4")
+	text.4.textbgcolor=values.tapcolor else text.4.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="5")
+	text.5.textbgcolor=values.tapcolor else text.5.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="6")
+	text.6.textbgcolor=values.tapcolor else text.6.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="7")
+	text.7.textbgcolor=values.tapcolor else text.7.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="8")
+	text.8.textbgcolor=values.tapcolor else text.8.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="9")
+	text.9.textbgcolor=values.tapcolor else text.9.textbgcolor=values.blockcolor]
+/ ontrialend = [if(trial.recallseq.response=="reset"){values.respstring="";
+	text.1.textbgcolor=values.blockcolor; text.2.textbgcolor=values.blockcolor; 
+	text.3.textbgcolor=values.blockcolor; text.4.textbgcolor=values.blockcolor; 
+	text.5.textbgcolor=values.blockcolor; text.6.textbgcolor=values.blockcolor;
+	text.7.textbgcolor=values.blockcolor; text.8.textbgcolor=values.blockcolor;
+	text.9.textbgcolor=values.blockcolor}]
+
+/ branch = [if(trial.recallseq.response!="done")trial.recallseq else trial.showfeedback]
+</trial>
+
+<trial showfeedback>
+/ skip = [values.showfeedback==false]
+/ stimulusframes = [1=board, feedbackmsg]
+/ validresponse = (noresponse)
+/ trialduration = values.feedbackduration
+/ recorddata = false
+</trial>
+
+<block blackdot>
+
+/ screencolor = (0, 0, 0)
+
+/ trials = [1,3,5,7,9,11,13,15 = showseq;2,4,6,8,10,12,14,16 = recallseq]
+
+</block>
+
+<expt blackdot>
+
+
+/ blocks = [1=blackdot]
+
+</expt>

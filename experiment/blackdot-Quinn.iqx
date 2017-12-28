@@ -1,0 +1,101 @@
+﻿
+先是定义一个点，颜色随机，大小还要调
+不知道 这个shape就搁这儿
+<shape dot>
+/erase = True(255,255,255)
+/color = rand(black,white)
+/size = (200,200)
+/shape = circle 
+</shape>
+
+再定义9个的以及16个点的，位置放在这里
+第一个有3代表是3*3的，4代表是4*4的
+没写完
+<text 31>
+/items = ("♥") 
+/ erase = ture(transparent)
+/txcolor = rand(black,white)
+/ hposition = 16.67%
+/ vposition = 16.67%
+</text>
+<text 35>
+/items = ("♥")
+/ erase = ture(transparent)
+/txcolor = rand(black,white)
+/ hposition = 50%
+/ vposition = 50%
+</text>
+
+<text 39>
+/items = ("♥")
+/ erase = ture(transparent)
+/txcolor = rand(black,white)
+/ hposition = 83.33%
+/ vposition = 83.33%
+</text>
+
+<shape blank>
+/erase = true(transparent)
+/color = (white)
+/size = (2000,1600)
+
+/shape = rectangle
+
+</shape>
+
+这个是重置和完成按钮
+<text reset>
+/ items = ("重置")
+/ position = (35%,99.5%)
+/ size = (20%,4%)
+/ erase = false
+/ fontstyle = ("Arial", 3.00%, true)
+/ txbgcolor = (grey)
+/ valign = bottom
+</text>
+
+<text done>
+/ items = ("完成")
+/ position = (65%,99.5%)
+/ size = (20%,4%)
+/ fontstyle = ("Arial", 3.00%, true)
+/ erase = false
+/ txbgcolor = (grey)
+/ valign = bottom
+</text>
+
+黑点分为出现和不出现 出现就是颜色为黑 颜色是text.xx.color
+
+
+设置feedback属性
+那就需要正确值了
+
+
+定义完了之后设置trial
+设置黑点的出现
+<trial dotshow>
+/ stimulustimes = [1 = 31,35,39]
+/ trialduration = 300
+/branch = [trial.dotrecall]
+</trial>
+
+回忆黑点的位置
+设置点击鼠标
+<trial dotrecall>
+ 
+/ inputdevice = mouse
+/ validresponse = (31,35,39,reset,done)
+/ stimulusframes = [1=31,35,39,reset,done]
+
+</trial>
+
+最后合并的时候trial是连起来的，先故事，再呈现点，再做出故事判断，再回忆点的位置，再给点的反馈
+<block dotblk>
+/trials = [1-5= dotshow]
+</block>
+最后是需要添加1个练习block 5个随机的故事
+还要实验组和控制组的对照
+<expt blackdot>
+/blocks = [1=dotblk]
+</expt>
+
