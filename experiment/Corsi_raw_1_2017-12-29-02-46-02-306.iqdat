@@ -1,0 +1,2 @@
+date	time	subject	blocknum	blockcode	trialnum	trialcode	values.seqnumber	values.seqlength	values.seqstring	values.respstring	response	latency	values.correct	values.ncorrectinblock	values.ncorrecttotal	values.blockspan	values.totalscore
+122917	10:46:02	1	2	corsiblock	4	recallseq	1	2	85	Ctrl+'Q'	Ctrl+'Q'	7600	0	0	0	0	0
