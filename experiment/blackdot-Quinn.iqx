@@ -44,7 +44,9 @@ dot后面跟着的第一个数字代表3*3还是4*4，第二、三个数字代�
 </shape>
 
 这个是重置和完成按钮
-如果要重置和完成
+如果要重置和完成，我还不怎么会写语句……写if吗？
+重置变成所有都白了？那之前的颜色怎么办呢？
+
 <text reset>
 / items = ("重置")
 / position = (35%,99.5%)
@@ -52,7 +54,6 @@ dot后面跟着的第一个数字代表3*3还是4*4，第二、三个数字代�
 / erase = false
 / fontstyle = ("Arial", 3.00%, true)
 / txbgcolor = (125, 125, 125)
-
 </text>
 
 <text done>
@@ -62,7 +63,6 @@ dot后面跟着的第一个数字代表3*3还是4*4，第二、三个数字代�
 / fontstyle = ("Arial", 3.00%, true)
 / erase = false
 / txbgcolor = (125, 125, 125)
-
 </text>
 
 黑点分为出现和不出现 出现就是颜色为黑 颜色是shape.dotxxx.color
@@ -81,11 +81,14 @@ branch语句该怎么写呢？因为我们最后是先故事，再呈现点，�
 
 回忆黑点的位置
 设置点击鼠标
-<trial dotrecall>
+我想呈现点一下有反馈，但是之前颜色的数据就丢了呀
+不知道怎么在记录被试反应的同时能够留着正确答案
+也不知道是不是应该写一个长长的if语句来实现正确答案的判断
 
+<trial dotrecall>
 / inputdevice = mouse
 / validresponse = (dot311,dot322,dot333,reset,done)
-/ stimulusframes = [1=dot311,dot322,dot333,reset,done]
+/ stimulusframes = [1=blank]
 
 </trial>
 
