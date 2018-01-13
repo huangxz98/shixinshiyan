@@ -1,0 +1,9 @@
+date	time	group	subject	build	blocknum	trialnum	blockcode	trialcode	pretrialpause	posttrialpause	windowcenter	trialduration	trialtimeout	blocktimeout	response	correct	latency	inwindow	stimulusnumber1	stimulusitem1	stimulusvpos1	stimulushpos1	stimulusonset1	stimulusnumber2	stimulusitem2	stimulusvpos2	stimulushpos2	stimulusonset2
+011218	16:58:49	1	1	4.0.10.0	1	1	blk1	storytrial1	1000	0	0	0	0	0	57	0	661	0	1	1.jpg	50pct	50pct	1	0	0	0	0	0
+011218	16:58:49	1	1	4.0.10.0	1	2	blk1	questiontrial1	500	0	0	0	0	0	33	0	2101	0	1	3×3pic (1).jpg	50pct	50pct	0	1	Q1.jpg	50pct	50pct	1999
+011218	16:58:49	1	1	4.0.10.0	1	3	blk1	responsetrial3	500	0	0	0	0	0	57	0	1021	0	1	3×3.jpg	50pct	50pct	10	0	0	0	0	0
+011218	16:58:49	1	1	4.0.10.0	1	4	blk1	pracanswerdot3_answer	0	0	0	0	0	0	s	1	4624	0	0	0	0	0	0	0	0	0	0	0
+011218	16:58:49	1	1	4.0.10.0	1	5	blk1	feedback3	500	0	0	0	0	0	57	1	677	0	1	3×3pic (1).jpg	50pct	50pct	2	0	0	0	0	0
+011218	16:58:49	1	1	4.0.10.0	2	1	pracinstruction3	pracinstruction	0	0	0	0	0	0	57	0	1989	0	1	练习结束！若您已熟悉实验流程，请按空格键进入正式实验。在正式实验中，将不会提供黑点刺激正确答案的反馈。若您仍未熟悉流程，请按Q键继续练习。	50pct	50pct	1	0	0	0	0	0
+011218	16:58:49	1	1	4.0.10.0	3	1	blk6	storytrial6	1000	0	0	0	0	0	57	0	560	0	1	6.jpg	50pct	50pct	1	0	0	0	0	0
+011218	16:58:49	1	1	4.0.10.0	3	2	blk6	questiontrial6	500	0	0	0	0	0	Ctrl+'Q'	1	28	0	1	3×3pic (2).jpg	50pct	50pct	358	1	Q6.jpg	50pct	50pct	1999

@@ -1,0 +1,1140 @@
+﻿实验设计：认知负荷条件下对道德两难小故事作出道德判断。实验按被试编号奇偶将被试随机分为两组，一组为实验组，另一为控制组，在道德故事呈现和道德问题判断之间呈现认知负荷刺激，要求实验组记忆4×4网格中不连成一条线的4个黑点位置，控制组记忆3×3网格中连成一条线的3个黑点位置，网格中每个对应一个字母，在问题判断后以字母方式输入报告记忆结果。每组各有8个block，包括1个练习block，每个block之间休息1s。
+
+******************************************************************************************************************************************************
+
+定义指导语
+
+<instruct instruction>
+
+	/nextkey = (" ")
+
+	/prevkey = ("Q")
+
+	/fontstyle = ("楷体", 3.14%, false, false, false, false, 5, 1)
+
+	/txcolor = (0,0,0)
+
+	/screencolor = (255,255,255)
+
+	/lastlabel = "请按空格键继续"
+
+	/windowsize = (2000,1600)
+
+</instruct>
+
+//呈现指导语
+
+<page instruction>
+
+欢迎您参加我们的实验！本实验包含实验任务阶段和问卷填写阶段，耗时预计约20分钟。^^^【任务】^^（1）首先您将阅读5个道德两难故事，阅读结束后请按空格键继续。^^（2）之后，屏幕上将呈现一个3×3或4×4的网格图案，请您记忆网格中【黑点】的位置。^^（3）接下来，针对之前的道德故事将会向您提出一个以“是”或“否”为答案的道德判断问题，请您做出选择。^^（4）最后，屏幕上将会呈现空白的网格，请您对照网格回忆其中黑点的位置，完成回忆后按空格键，在对话框中输入黑点位置。^^^【说明】^^对于道德判断问题，请按“F”键代表回答“是”，或按“J”键代表回答“否”。对于还原任务，请输入黑点所在位置的字母（不用区分大小写，不用按照字母顺序）。^^^若您已理解指导语，请按空格键进入练习阶段。
+
+</page>
+
+//呈现实验结束语
+
+<page endinstruction>
+
+实验结束。^^请回到网页界面进入问卷填写。^^
+
+</page>
+
+******************************************************************************************************************************************************
+
+定义item
+
+//定义练习阶段结束语、黑点刺激图片材料item
+
+<item practiceinstruction>
+
+/1 = "练习结束！若您已熟悉实验流程，请按空格键进入正式实验。在正式实验中，将不会提供黑点刺激正确答案的反馈。若您仍未熟悉流程，请按Q键继续练习。"
+
+</item>
+
+
+<item practicedot3>
+
+/1 = "3×3pic (1).jpg"
+
+</item>
+
+
+<item practicedot4>
+
+/1 = "4×4pic (1).jpg"
+
+</item>
+
+//定义控制组黑点刺激图片材料item
+
+<item dot3>
+
+/1 = "3×3pic (2).jpg"
+
+/2 = "3×3pic (3).jpg"
+
+/3 = "3×3pic (4).jpg"
+
+/4 = "3×3pic (5).jpg"
+
+/5 = "3×3pic (6).jpg"
+
+/6 = "3×3pic (7).jpg"
+
+/7 = "3×3pic (8).jpg"
+
+</item>
+
+//定义实验组黑点刺激图片材料item
+
+<item dot4>
+
+/1 = "4×4pic (2).jpg"
+
+/2 = "4×4pic (3).jpg"
+
+/3 = "4×4pic (4).jpg"
+
+/4 = "4×4pic (5).jpg"
+
+/5 = "4×4pic (6).jpg"
+
+/6 = "4×4pic (7).jpg"
+
+/7 = "4×4pic (8).jpg"
+
+</item>
+
+//定义实验组和控制组的带字母网格item
+
+<item responsepic3>
+
+/1 = "3×3.jpg"
+
+</item>
+
+<item responsepic4>
+
+/1 = "4×4.jpg"
+ 
+</item>
+
+//定义道德两难故事item，含练习阶段共8个
+
+<item storypic1>
+
+/1 = "1.jpg"
+
+</item>
+
+<item storypic2>
+
+/1 = "2.jpg"
+
+</item>
+
+<item storypic3>
+
+/3 = "3.jpg"
+
+</item>
+
+<item storypic4>
+
+/4 = "4.jpg"
+
+</item>
+
+<item storypic5>
+
+/5 = "5.jpg"
+
+</item>
+
+<item storypic6>
+
+/6 = "6.jpg"
+
+</item>
+
+<item storypic7>
+
+/7 = "7.jpg"
+
+</item>
+
+<item storypic8>
+
+/8 = "8.jpg"
+
+</item>
+
+//定义故事对应的问题item，含练习阶段共8个
+
+<item questionpic1>
+
+/1 = "Q1.jpg"
+
+</item>
+
+<item questionpic2>
+
+/2 = "Q2.jpg"
+
+</item>
+
+<item questionpic3>
+
+/3 = "Q3.jpg"
+
+</item>
+
+<item questionpic4>
+
+/4 = "Q4.jpg"
+
+</item>
+
+<item questionpic5>
+
+/5 = "Q5.jpg"
+
+</item>
+
+<item questionpic6>
+
+/6 = "Q6.jpg"
+
+</item>
+
+<item questionpic7>
+
+/7 = "Q7.jpg"
+
+</item>
+
+<item questionpic8>
+
+/8 = "Q8.jpg"
+
+</item>
+
+******************************************************************************************************************************************************
+
+定义text、picture、textbox等
+
+//定义练习阶段结束语格式
+
+<text practiceinstruction>
+
+/ items = practiceinstruction
+
+/ fontstyle = ("Agency FB", 4.20%, false, false, false, false, 5, 1)
+
+/ txcolor = (0, 0, 0)
+
+/ halign = center
+
+/ valign = center
+
+/ hjustify = left
+
+/ size = (2000,1600)
+
+</text>
+
+//定义作出反应的文本框对象answer
+
+<textbox answer>
+
+/ caption =  "输入你的答案（请无间隔地输入黑点位置对应的字母）"
+
+/ required = true
+
+/ fontstyle = ("楷体", 4%, true, false, false, false, 5, 1)
+
+/ mask = alphabetic
+
+/ position = (30%, 50%)
+
+/ responsefontstyle = ("Arial", 3.14%, false, false, false, false, 5, 1)
+
+/ textboxsize = (40%,5%)
+
+</textbox>
+
+//定义练习阶段的认知负荷黑点刺激格式
+
+<picture pracdot3>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = practicedot3
+
+/size = (2000,1600)
+
+</picture>
+
+<picture pracdot4>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = practicedot4
+
+/size = (2000,1600)
+
+</picture>
+
+//定义实验组与控制组的黑点刺激界面
+
+<picture dot3>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = dot3
+
+/size = (2000,1600)
+
+</picture>
+
+<picture dot4>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = dot4
+
+/size = (2000,1600)
+
+</picture>
+
+//定义道德两难故事刺激的界面，包括练习阶段共8个
+
+<picture story1>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = storypic1
+
+/size = (2000,1600)
+
+</picture>
+
+<picture story2>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = storypic2
+
+/size = (2000,1600)
+
+</picture>
+
+<picture story3>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = storypic3
+
+/size = (2000,1600)
+
+</picture>
+
+<picture story4>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = storypic4
+
+/size = (2000,1600)
+
+</picture>
+
+<picture story5>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = storypic5
+
+/size = (2000,1600)
+
+</picture>
+
+<picture story6>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = storypic6
+
+/size = (2000,1600)
+
+</picture>
+
+<picture story7>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = storypic7
+
+/size = (2000,1600)
+
+</picture>
+
+<picture story8>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = storypic8
+
+/size = (2000,1600)
+
+</picture>
+
+//定义关于道德故事的判断问题，包括练习阶段共8个，与故事一一对应
+
+<picture question1>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = questionpic1
+
+/size = (2000,1600)
+
+</picture>
+
+<picture question2>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = questionpic2
+
+/size = (2000,1600)
+
+</picture>
+
+<picture question3>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = questionpic3
+
+/size = (2000,1600)
+
+</picture>
+
+<picture question4>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = questionpic4
+
+/size = (2000,1600)
+
+</picture>
+
+<picture question5>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = questionpic5
+
+/size = (2000,1600)
+
+</picture>
+
+<picture question6>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = questionpic6
+
+/size = (2000,1600)
+
+</picture>
+
+<picture question7>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = questionpic7
+
+/size = (2000,1600)
+
+</picture>
+
+<picture question8>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = questionpic8
+
+/size = (2000,1600)
+
+</picture>
+
+//定义控制组3×3的带字母网格界面
+
+<picture response3>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = responsepic3
+
+/size = (2000,1600)
+
+</picture>
+
+//定义实验组4×4的带字母网格界面
+
+<picture response4>
+
+/erase = True(255,255,255) 
+
+/halign = center
+
+/items = responsepic4
+
+/size = (2000,1600)
+
+</picture>
+
+******************************************************************************************************************************************************
+
+定义trial
+
+//定义控制组和实验组练习阶段输入答案的textbox界面，并提示字母位置。输入后点击按钮查看答案作为练习阶段的反馈。
+
+<surveypage pracanswerdot3>
+
+/ caption = "第一行：A B C 第二行：D E F 第三行：G H I"
+
+/ fontstyle = ("Arial", 3.14%, true, false, false, false, 5, 1)
+
+/ showquestionnumbers = false
+
+/ showpagenumbers = false
+
+/ finishlabel ="查看答案"
+
+/ navigationbuttonfontstyle = ("楷体", 3.14%, true, false, false, false, 5, 1)
+
+/ navigationbuttonsize = (20%,10%)
+
+/ questions = [1 = answer]
+
+/ txcolor = (0,0,0)
+
+</surveypage>
+
+<surveypage pracanswerdot4>
+
+/ caption = "第一行：A B C D 第二行：E F G H 第三行：I J K L 第四行：M N O P"
+
+/ fontstyle = ("Arial", 3.14%, true, false, false, false, 5, 1)
+
+/ showquestionnumbers = false
+
+/ showpagenumbers = false
+
+/ finishlabel ="查看答案"
+
+/ navigationbuttonfontstyle = ("楷体", 3.14%, true, false, false, false, 5, 1)
+
+/ navigationbuttonsize = (20%,10%)
+
+/ questions = [1 = answer]
+
+/ txcolor = (0,0,0)
+
+</surveypage>
+
+//定义控制组正式实验阶段输入答案的textbox界面，并提示字母位置
+
+<surveypage answerdot3>
+
+/ caption = "第一行：A B C 第二行：D E F 第三行：G H I"
+
+/ fontstyle = ("Arial", 3.14%, true, false, false, false, 5, 1)
+
+/ showquestionnumbers = false
+
+/ showpagenumbers = false
+
+/ finishlabel ="进入下一试次"
+
+/ navigationbuttonfontstyle = ("楷体", 3.14%, true, false, false, false, 5, 1)
+
+/ navigationbuttonsize = (20%,10%)
+
+/ questions = [1 = answer]
+
+/ txcolor = (0,0,0)
+
+</surveypage>
+
+//定义实验组正式实验阶段输入答案的textbox界面，并提示字母位置
+
+<surveypage answerdot4>
+
+/ caption = "第一行：A B C D 第二行：E F G H 第三行：I J K L 第四行：M N O P"
+
+/ fontstyle = ("Arial", 3.14%, true, false, false, false, 5, 1)
+
+/ showquestionnumbers = false
+
+/ showpagenumbers = false
+
+/ finishlabel ="进入下一试次"
+
+/ navigationbuttonfontstyle = ("楷体", 3.14%, true, false, false, false, 5, 1)
+
+/ navigationbuttonsize = (20%,10%)
+
+/ questions = [1 = answer]
+
+/ txcolor = (0,0,0)
+
+</surveypage>
+
+//定义故事呈现trial，练习与实验阶段共8个trial
+
+<trial storytrial1>
+
+/pretrialpause = 1000
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = story1] 
+
+</trial>
+
+<trial storytrial2>
+
+/pretrialpause = 1000
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = story2] 
+
+</trial>
+
+<trial storytrial3>
+
+/pretrialpause = 1000
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = story3] 
+
+</trial>
+
+<trial storytrial4>
+
+/pretrialpause = 1000
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = story4] 
+
+</trial>
+
+<trial storytrial5>
+
+/pretrialpause = 1000
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = story5] 
+
+</trial>
+
+<trial storytrial6>
+
+/pretrialpause = 1000
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = story6] 
+
+</trial>
+
+<trial storytrial7>
+
+/pretrialpause = 1000
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = story7] 
+
+</trial>
+
+<trial storytrial8>
+
+/pretrialpause = 1000
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = story8] 
+
+</trial>
+
+//定义道德两难故事对应问题trial，并在其前加入认知负荷黑点刺激，黑点刺激呈现2s，实验组控制组（包括练习阶段）共2×8=16个
+
+<trial questiontrial1>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = pracdot3; 2001 = question1]
+
+</trial>
+
+<trial questiontrial2>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot3; 2001 = question2]
+
+</trial>
+
+<trial questiontrial3>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot3; 2001 = question3]
+
+</trial>
+
+<trial questiontrial4>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot3; 2001 = question4]
+
+</trial>
+
+<trial questiontrial5>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot3; 2001 = question5]
+
+</trial>
+
+<trial questiontrial6>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot3; 2001 = question6]
+
+</trial>
+
+<trial questiontrial7>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot3; 2001 = question7]
+
+</trial>
+
+<trial questiontrial8>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot3; 2001 = question8]
+
+</trial>
+
+<trial questiontrial9>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = pracdot4; 2001 = question1]
+
+</trial>
+
+<trial questiontrial10>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot4; 2001 = question2]
+
+</trial>
+
+<trial questiontrial11>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot4; 2001 = question3]
+
+</trial>
+
+<trial questiontrial12>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot4; 2001 = question4]
+
+</trial>
+
+<trial questiontrial13>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot4; 2001 = question5]
+
+</trial>
+
+<trial questiontrial14>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot4; 2001 = question6]
+
+</trial>
+
+<trial questiontrial15>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot4; 2001 = question7]
+
+</trial>
+
+<trial questiontrial16>
+
+/pretrialpause = 500
+
+/validresponse =  ("F","J")
+
+/stimulustimes = [1 = dot4; 2001 = question8]
+
+</trial>
+
+//定义带字母网格trial
+
+<trial responsetrial3>
+
+/pretrialpause = 500
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = response3]
+
+</trial>
+
+<trial responsetrial4>
+
+/pretrialpause = 500
+
+/validresponse =  (" ")
+
+/stimulustimes = [1 = response4]
+
+</trial>
+
+//定义练习阶段的答案反馈呈现trial
+
+<trial feedback3>
+
+/pretrialpause = 500
+
+/validresponse =  (" ")
+
+/correctresponse = (" ")
+
+/stimulustimes = [1 = pracdot3]
+
+</trial>
+
+<trial feedback4>
+
+/pretrialpause = 500
+
+/validresponse =  (" ")
+
+/correctresponse = (" ")
+
+/stimulustimes = [1 = pracdot4]
+
+</trial>
+
+//定义练习阶段结束语的呈现trial，可按Q键返回练习，或按空格键开始正式实验
+
+<trial pracinstruction>
+
+/pretrialpause = 0
+
+/validresponse =  (" ", "Q")
+
+/correctresponse = ("Q")
+
+/stimulustimes = [1 = practiceinstruction]
+
+</trial>
+
+******************************************************************************************************************************************************
+
+定义block，正式实验阶段实验组和控制组各7个，练习阶段block各1个，共16个
+
+//定义控制组练习阶段block，分为练习实验阶段block和练习结束语阶段block
+
+<block blk1>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial1; 2 = questiontrial1; 3 = responsetrial3; 4 = pracanswerdot3; 5 = feedback3]
+
+/ branch = [if (trial.feedback3.correct == 1) block.pracinstruction3]
+
+</block>
+
+
+<block pracinstruction3>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = pracinstruction]
+
+/ branch = [if (trial.pracinstruction.correct == 1) block.blk1]
+
+</block>
+
+//定义控制组正式实验block
+
+<block blk2>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial2; 2 = questiontrial2; 3 = responsetrial3; 4 = answerdot3]
+
+</block>
+
+<block blk3>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial3; 2 = questiontrial3; 3 = responsetrial3; 4 = answerdot3]
+
+</block>
+
+<block blk4>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial4; 2 = questiontrial4; 3 = responsetrial3; 4 = answerdot3]
+
+</block>
+
+<block blk5>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial5; 2 = questiontrial5; 3 = responsetrial3; 4 = answerdot3]
+
+</block>
+
+<block blk6>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial6; 2 = questiontrial6; 3 = responsetrial3; 4 = answerdot3]
+
+</block>
+
+<block blk7>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial7; 2 = questiontrial7; 3 = responsetrial3; 4 = answerdot3]
+
+</block>
+
+<block blk8>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial8; 2 = questiontrial8; 3 = responsetrial3; 4 = answerdot3]
+
+</block>
+
+//定义实验组练习阶段block，分为练习实验阶段block和练习结束语阶段block
+
+<block blk9>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial1; 2 = questiontrial9; 3 = responsetrial4; 4 = pracanswerdot4; 5 = feedback4]
+
+/ branch = [if (trial.feedback4.correct == 1) block.pracinstruction4]
+
+</block>
+
+<block pracinstruction4>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = pracinstruction]
+
+/ branch = [if (trial.pracinstruction.correct == 1) block.blk9]
+
+</block>
+
+//定义实验组正式实验block
+
+<block blk10>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial2; 2 = questiontrial10; 3 = responsetrial4; 4 = answerdot4]
+
+</block>
+
+<block blk11>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial3; 2 = questiontrial11; 3 = responsetrial4; 4 = answerdot4]
+
+</block>
+
+<block blk12>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial4; 2 = questiontrial12; 3 = responsetrial4; 4 = answerdot4]
+
+</block>
+
+<block blk13>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial5; 2 = questiontrial13; 3 = responsetrial4; 4 = answerdot4]
+
+</block>
+
+<block blk14>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial6; 2 = questiontrial14; 3 = responsetrial4; 4 = answerdot4]
+
+</block>
+
+<block blk15>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial7; 2 = questiontrial15; 3 = responsetrial4; 4 = answerdot4]
+
+</block>
+
+<block blk16>
+
+/ screencolor = (255, 255, 255)
+
+/ trials = [1 = storytrial8; 2 = questiontrial16; 3 = responsetrial4; 4 = answerdot4]
+
+</block>
+
+******************************************************************************************************************************************************
+
+定义experiment，呈现顺序为指导语→练习阶段→实验阶段随机顺序呈现7个block→结束语
+
+//定义控制组expt
+
+<expt moralstory3>
+
+/ subjects = (1 of 2)
+
+/ preinstructions = (instruction)
+
+/ postinstructions = (endinstruction)
+
+/ blocks = [1 = blk1; 2-8 = noreplace(blk2, blk3, blk4, blk5, blk6, blk7, blk8)]
+
+</expt>
+
+//定义实验组expt
+
+<expt moralstory4>
+
+/ subjects = (2 of 2)
+
+/ preinstructions = (instruction)
+
+/ postinstructions = (endinstruction)
+
+/ blocks = [1 = blk9; 2-8 = noreplace(blk10, blk11, blk12, blk13, blk14, blk15, blk16)]
+
+</expt>
